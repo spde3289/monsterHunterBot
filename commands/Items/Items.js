@@ -1,11 +1,9 @@
 const { getItems } = require("./ItemsFatch");
-const ItemList = require("./ItemList.json");
+const ItemList = require("./itemList.json");
 
 const Items = () => async (_, interaction) => {
   const currentItems = interaction.options.get("소재")?.value || "";
-  const item = ItemList.filter((el) => {
-    el.name === currentItems
-  });
+  const item = ItemList.filter((el) => el.name === currentItems);
 
   let Embed;
 
