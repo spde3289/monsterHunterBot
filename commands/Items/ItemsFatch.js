@@ -18,7 +18,6 @@ const parsing = async (number) => {
 
   let fields = [];
   
-  /*   console.log($tbody.text()); */
   const crawlingModule = () => {
     
     let $tbody = $("tbody:nth(0) > tr");
