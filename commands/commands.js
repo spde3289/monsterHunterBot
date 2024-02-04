@@ -1,5 +1,7 @@
 const { ApplicationCommandOptionType } = require("discord.js");
 const { Items } = require("./Items/Items");
+const ItemList = require("./Items/itemList.json");
+
 
 const commands = [
   {
@@ -11,6 +13,7 @@ const commands = [
         name: "소재",
         description: "소재를 입력해주세요",
         type: ApplicationCommandOptionType.String,
+        /* choices: dateList, */
       },
     ],
     execute: Items(),

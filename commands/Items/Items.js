@@ -1,36 +1,32 @@
 const { getItems } = require("./ItemsFatch");
-// const ItemList = require("./itemList.json");
-const { selenium } = require("./seleniumselenium");
+const ItemList = require("./itemList.json");
 
 const Items = () => async (_, interaction) => {
-  const currentItems = interaction.options.get("소재")?.value || "";
-  const item = ItemList.filter((el) => el.name === currentItems);
-  selenium();
-  let Embed;
+  const command = interaction.options.get("소재")?.value || "";
+
+  const item = ItemList.filter(
+    (el) => el.name.replace(/\s/g, "") === command.replace(/\s/g, "")
+  );
+
+  let Embed = [];
 
   if (item.length === 0) {
-    Embed = {
+    Embed.push({
       color: 0x0099ff,
       fields: [
         {
-          name: currentItems,
-          value: "올바른 이름을 입력해주세요",
+          name: command,
+          value: "올바른 아이템 이름을 입력해주세요",
         },
       ],
-    };
+    });
   } else {
-    const itemNumber = item[0].itemNumber.split("/");
-    const number = itemNumber[itemNumber.length - 1].split(".")[0];
-    const data = await getItems(number);
-    Embed = {
-      color: 0x0099ff,
-      fields: data,
-    };
+    Embed = await getItems(item[0]);
   }
 
   await interaction.editReply({
     ephemeral: true,
-    embeds: [Embed],
+    embeds: Embed,
   });
 };
 
