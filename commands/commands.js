@@ -1,8 +1,6 @@
 const { ApplicationCommandOptionType } = require("discord.js");
 const { Items } = require("./Items/Items");
-const { Monster } = require("./Monster/Monster")
-const ItemList = require("./Items/itemList.json");
-
+const { Monster } = require("./Monster/Monster");
 
 const commands = [
   {
@@ -28,10 +26,9 @@ const commands = [
         name: "몬스터",
         description: "몬스터 이름을 입력해주세요",
         type: ApplicationCommandOptionType.String,
-        /* choices: dateList, */
       },
     ],
-    execute: Items(),
+    execute: Monster(),
   },
 ];
 

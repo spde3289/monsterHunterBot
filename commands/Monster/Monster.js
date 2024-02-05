@@ -1,13 +1,17 @@
-const MonsterFatch = require("./MonsterFatch")
+const monsterList = require("./monsterInfo.json");
+const MonsterFatch = require("./MonsterFatch");
 
-const Monster = async (_, interaction) => {
+const Monster = () => async (_, interaction) => {
   const command = interaction.options.get("몬스터")?.value || "";
-  MonsterFatch;
-  let Embed
+  let Embed = [];
 
-  if (item.length === 0) {
+  const currentMonster = monsterList.filter(
+    (el) => el.name.replace(/\s/g, "") === command.replace(/\s/g, "")
+  );
+
+  if (currentMonster.length === 0) {
     Embed.push({
-      color: 0x0099ff,
+      color: 0x1ac89b,
       fields: [
         {
           name: command,
@@ -16,8 +20,13 @@ const Monster = async (_, interaction) => {
       ],
     });
   } else {
-
-
+    const img = await MonsterFatch(currentMonster[0].link);
+    Embed.push({
+      color: 0x1ac89b,
+      image: {
+        url: img,
+      },
+    });
   }
 
   await interaction.editReply({
