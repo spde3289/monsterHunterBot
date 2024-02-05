@@ -3,6 +3,7 @@
     "axios": "^1.6.7",
     "cheerio": "^1.0.0-rc.12",
     "discord.js": "^14.14.1",
+    "hangul-js": "^0.2.6",
     "selenium-webdriver": "^4.17.0"
   }
 }
