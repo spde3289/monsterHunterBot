@@ -1,13 +1,12 @@
 const monsterList = require("./monsterInfo.json");
 const MonsterFatch = require("./MonsterFatch");
+const { suggestCorrection } = require("../../utils/suggestCorrection");
 
 const Monster = () => async (_, interaction) => {
   const command = interaction.options.get("몬스터")?.value || "";
   let Embed = [];
 
-  const currentMonster = monsterList.filter(
-    (el) => el.name.replace(/\s/g, "") === command.replace(/\s/g, "")
-  );
+  const currentMonster = suggestCorrection(command, monsterList);
 
   if (currentMonster.length === 0) {
     Embed.push({

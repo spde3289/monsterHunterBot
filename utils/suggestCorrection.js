@@ -2,6 +2,7 @@ function levenshteinDistance(a, b) {
   const m = a.length;
   const n = b.length;
   const dp = Array.from({ length: m + 1 }, () => Array(n + 1).fill(0));
+
   for (let i = 0; i <= m; i++) {
     for (let j = 0; j <= n; j++) {
       if (i === 0) {
@@ -10,11 +11,6 @@ function levenshteinDistance(a, b) {
         dp[i][j] = i;
       } else {
         dp[i][j] = Math.min(
-          dp[i - 1][j - 1] + (a[i - 1] !== b[j - 1] ? 1 : 0),
-          dp[i][j - 1] + 1,
-          dp[i - 1][j] + 1
-        );
-        console.log(
           dp[i - 1][j - 1] + (a[i - 1] !== b[j - 1] ? 1 : 0),
           dp[i][j - 1] + 1,
           dp[i - 1][j] + 1
@@ -44,15 +40,6 @@ function suggestCorrection(input, json, threshold = 3) {
 
   return suggestions;
 }
-
-const json = [
-  {
-    name: "유니언광석",
-    href: "https://mhworld.kiranico.com/ko/items/rYm5r/yunieongwangseog",
-  },
-];
-
-suggestCorrection("유니d광석", json);
 
 module.exports = {
   suggestCorrection: suggestCorrection,

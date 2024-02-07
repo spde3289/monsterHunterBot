@@ -1,15 +1,13 @@
 const { getItems } = require("./ItemsFatch");
 const ItemList = require("./itemList.json");
+const { suggestCorrection } = require("../../utils/suggestCorrection");
 
 const Items = () => async (_, interaction) => {
   const command = interaction.options.get("소재")?.value || "";
 
-  const item = ItemList.filter(
-    (el) => el.name.replace(/\s/g, "") === command.replace(/\s/g, "")
-  );
+  const item = suggestCorrection(command, ItemList);
 
   let Embed = [];
-
   if (item.length === 0) {
     Embed.push({
       color: 0x0099ff,
