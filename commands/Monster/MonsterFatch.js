@@ -1,18 +1,10 @@
 const cheerio = require("cheerio");
-const axios = require("axios");
-
-const getMonstersHtml = async (link) => {
-  try {
-    return await axios.get(
-      `https://mhf.inven.co.kr/dataninfo/mhw/monster/${link}`
-    );
-  } catch (error) {
-    console.log(error);
-  }
-};
+const getData = require("../../fatch/getData")
 
 const MonsterFatch = async (link) => {
-  const monsterHTML = await getMonstersHtml(link);
+  const monsterHTML = await getData(
+    `https://mhf.inven.co.kr/dataninfo/mhw/monster/${link}`
+  );
   const $ = cheerio.load(monsterHTML.data);
   const $img = $(".monster_detail_wrap > img").attr("src");
 

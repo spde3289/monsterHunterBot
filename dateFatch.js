@@ -8,6 +8,7 @@ const selenium = async () => {
     pageLoad: 30000, // 30초
     script: 30000, // 30초
   });
+  
   await driver.get(`https://mhworld.kiranico.com/ko/items`);
 
   try {

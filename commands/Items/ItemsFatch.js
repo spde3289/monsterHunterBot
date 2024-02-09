@@ -1,5 +1,5 @@
 const cheerio = require("cheerio");
-const axios = require("axios");
+const getData = require("../../fatch/getData");
 
 const GuidingLands = [
   //인도하는 땅
@@ -15,16 +15,9 @@ const InvestigationReward = [
   "Investigation Reward (Bronze)",
 ];
 
-const getItemsHTML = async (item) => {
-  try {
-    return await axios.get(item.href);
-  } catch (error) {
-    console.log(error);
-  }
-};
-
 const parsing = async (item) => {
-  let itemsHTML = await getItemsHTML(item);
+  let itemsHTML = await getData(item.href);
+  
   let $ = cheerio.load(itemsHTML.data);
   let $divs = $(".table-responsive:nth(0)");
 
