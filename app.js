@@ -1,10 +1,16 @@
 const { Client, GatewayIntentBits } = require("discord.js");
+var ncp = require("node-clipboardy");
 const { REST, Routes } = require("discord.js");
 const { token, id } = require("./token.json");
 const { commands } = require("./commands/commands");
+const onMessage = require("./messages/onMessage");
 
 const client = new Client({
-  intents: [GatewayIntentBits.Guilds, GatewayIntentBits.GuildMessages],
+  intents: [
+    GatewayIntentBits.Guilds,
+    GatewayIntentBits.GuildMessages,
+    GatewayIntentBits.MessageContent,
+  ],
 });
 const rest = new REST({ version: "10" }).setToken(token);
 
@@ -20,8 +26,20 @@ client.on("ready", () => {
   console.log(`Logged in as ${client.user.tag}!`);
 });
 
+// 집회구역 복사
+client.on("messageCreate", onMessage);
+
 client.on("interactionCreate", async (interaction) => {
-  if (!interaction.isChatInputCommand()) return;
+  // if (!interaction.isChatInputCommand()) return;
+
+  /** 집회구역 복사 */
+  if (interaction.isButton()) {
+    // 클립보드에 메시지 내용을 복사합니다.
+    ncp.writeSync(interaction.customId);
+    await interaction.reply("복사되었습니다.");
+    await interaction.deleteReply();
+  }
+  /** 슬레시 커멘드 입력 */
   if (interaction.isCommand()) {
     //등록한 명령어를 찾아서
     const currentCommand = commands.find(
