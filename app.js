@@ -1,5 +1,4 @@
 const { Client, GatewayIntentBits } = require("discord.js");
-var ncp = require("node-clipboardy");
 const { REST, Routes } = require("discord.js");
 const { token, id } = require("./token.json");
 const { commands } = require("./commands/commands");
@@ -35,7 +34,11 @@ client.on("interactionCreate", async (interaction) => {
   /** 집회구역 복사 */
   if (interaction.isButton()) {
     // 클립보드에 메시지 내용을 복사합니다.
-    ncp.writeSync(interaction.customId);
+    // navigator.clipboard.write(interaction.customId);
+    // clipboard.write(interaction.customId);
+    // clipboard.read();
+    // console.log(clipboard.readSync("d"))
+    //clipboard.clipboard.writeText(interaction.customId);
     await interaction.reply("복사되었습니다.");
     await interaction.deleteReply();
   }
