@@ -1,6 +1,6 @@
 const { ApplicationCommandOptionType } = require("discord.js");
-const { Items } = require("./Items/Items");
-const { Monster } = require("./Monster/Monster");
+const { Items } = require("./Items");
+const { Monster } = require("./Monster");
 
 const commands = [
   {

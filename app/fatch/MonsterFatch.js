@@ -1,5 +1,5 @@
 const cheerio = require("cheerio");
-const getData = require("../../fatch/getData")
+const getData = require("./fatch");
 
 const MonsterFatch = async (link) => {
   const monsterHTML = await getData(

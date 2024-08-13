@@ -1,7 +1,7 @@
 const cheerio = require("cheerio");
 const axios = require("axios");
 const fs = require("fs");
-const getData = require("./fatch/getData");
+const getData = require("../app/fatch/getData");
 
 const MonsterFatch = async () => {
   const HTML = await getData("https://mhf.inven.co.kr/dataninfo/mhw/monster/");
@@ -24,7 +24,6 @@ const MonsterFatch = async () => {
 
   const stringJson = JSON.stringify(json);
   fs.writeFileSync("monsterInfo.json", stringJson);
-
 };
 
 MonsterFatch();

@@ -1,5 +1,5 @@
 const cheerio = require("cheerio");
-const getData = require("../../fatch/getData");
+const getData = require("./fatch");
 
 const GuidingLands = [
   //인도하는 땅
@@ -17,7 +17,7 @@ const InvestigationReward = [
 
 const parsing = async (item) => {
   let itemsHTML = await getData(item.href);
-  
+
   let $ = cheerio.load(itemsHTML.data);
   let $divs = $(".table-responsive:nth(0)");
 
@@ -40,17 +40,20 @@ const parsing = async (item) => {
         let place; // 위치
 
         let probability; // 확률
-        if (idx === 0) { // 사냥
+        if (idx === 0) {
+          // 사냥
           rank = $(tds).find("td:nth(0)").text(); // 랭크
           name = $(tds).find("td:nth(1)").text(); // 이름
           place = $(tds).find("td:nth(2)").text(); // 위치
           probability = $(tds).find("td:nth(4)").text(); // 확률
-        } else if (idx === 1) { // 퀘스트
+        } else if (idx === 1) {
+          // 퀘스트
           rank = $(tds).find("td:nth(100)").text(); // 랭크
           name = $(tds).find("td:nth(0)").text(); // 이름
           place = $(tds).find("td:nth(100)").text(); // 위치
           probability = $(tds).find("td:nth(3)").text(); // 확률
-        } else if (idx === 2) { //동료 탐험대
+        } else if (idx === 2) {
+          //동료 탐험대
           rank = $(tds).find("td:nth(0)").text(); // 랭크
           name = $(tds).find("td:nth(1)").text(); // 이름
           place = $(tds).find("td:nth(4)").text(); // 위치
@@ -60,9 +63,8 @@ const parsing = async (item) => {
           name = $(tds).find("td:nth(1)").text(); // 이름
           place = $(tds).find("td:nth(100)").text(); // 위치
           probability = $(tds).find("td:nth(4)").text(); // 확률
-
         }
- 
+
         fields.push({
           name: `${rank} - ${name}`,
           value: `${place} - ${probability}`,

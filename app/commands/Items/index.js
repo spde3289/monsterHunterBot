@@ -1,6 +1,6 @@
-const { getItems } = require("./ItemsFatch");
-const ItemList = require("./itemList.json");
-const { suggestCorrection } = require("../../utils/suggestCorrection");
+const { getItems } = require("../../fatch/ItemsFatch");
+const ItemList = require("../../data/itemList.json");
+const { suggestCorrection } = require("../../../utils/suggestCorrection");
 
 const Items = () => async (_, interaction) => {
   const command = interaction.options.get("소재")?.value || "";

@@ -1,6 +1,6 @@
-const monsterList = require("./monsterInfo.json");
-const MonsterFatch = require("./MonsterFatch");
-const { suggestCorrection } = require("../../utils/suggestCorrection");
+const monsterList = require("../../data/monsterInfo.json");
+const MonsterFatch = require("../../fatch/MonsterFatch");
+const { suggestCorrection } = require("../../../utils/suggestCorrection");
 
 const Monster = () => async (_, interaction) => {
   const command = interaction.options.get("몬스터")?.value || "";

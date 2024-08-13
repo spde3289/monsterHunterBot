@@ -1,8 +1,8 @@
 const { Client, GatewayIntentBits } = require("discord.js");
 const { REST, Routes } = require("discord.js");
 const { token, id } = require("./token.json");
-const { commands } = require("./commands/commands");
-const onMessage = require("./messages/onMessage");
+const { commands } = require("./app/commands/commands");
+const onMessage = require("./app/messages/onMessage");
 
 const client = new Client({
   intents: [
