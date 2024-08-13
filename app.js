@@ -29,16 +29,8 @@ client.on("ready", () => {
 client.on("messageCreate", onMessage);
 
 client.on("interactionCreate", async (interaction) => {
-  // if (!interaction.isChatInputCommand()) return;
-
   /** 집회구역 복사 */
   if (interaction.isButton()) {
-    // 클립보드에 메시지 내용을 복사합니다.
-    // navigator.clipboard.write(interaction.customId);
-    // clipboard.write(interaction.customId);
-    // clipboard.read();
-    // console.log(clipboard.readSync("d"))
-    //clipboard.clipboard.writeText(interaction.customId);
     await interaction.reply("복사되었습니다.");
     await interaction.deleteReply();
   }

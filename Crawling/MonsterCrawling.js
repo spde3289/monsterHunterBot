@@ -13,8 +13,6 @@ const MonsterFatch = async () => {
     let name = $(tr).find("td.name > a > b").text();
     let link = $(tr).find("td.name > a").attr("href");
 
-    console.log(name);
-    console.log(link);
     json.push({
       name,
       link,

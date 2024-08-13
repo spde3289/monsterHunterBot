@@ -8,7 +8,7 @@ const selenium = async () => {
     pageLoad: 30000, // 30초
     script: 30000, // 30초
   });
-  
+
   await driver.get(`https://mhworld.kiranico.com/ko/items`);
 
   try {
@@ -20,9 +20,9 @@ const selenium = async () => {
 
     await driver.sleep(25000);
 
-    const a = await driver.findElements(By.className("col-lg-4 py-2"));
+    const itemList = await driver.findElements(By.className("col-lg-4 py-2"));
 
-    await setJson(a);
+    await setJson(itemList);
   } finally {
     await driver.quit();
   }
