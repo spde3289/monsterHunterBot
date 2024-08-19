@@ -1,7 +1,7 @@
 const cheerio = require("cheerio");
 const getData = require("./fatch");
 
-const MonsterFatch = async (link) => {
+const monsterFatch = async (link) => {
   const monsterHTML = await getData(
     `https://mhf.inven.co.kr/dataninfo/mhw/monster/${link}`
   );
@@ -11,4 +11,4 @@ const MonsterFatch = async (link) => {
   return $img;
 };
 
-module.exports = MonsterFatch;
+module.exports = monsterFatch;

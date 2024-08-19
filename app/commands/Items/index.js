@@ -2,7 +2,7 @@ const { getItems } = require("../../fatch/ItemsFatch");
 const ItemList = require("../../data/itemList.json");
 const { suggestCorrection } = require("../../../utils/suggestCorrection");
 
-const Items = () => async (_, interaction) => {
+const items = () => async (_, interaction) => {
   const command = interaction.options.get("소재")?.value || "";
   console.log(interaction);
   const item = suggestCorrection(command, ItemList);
@@ -29,5 +29,5 @@ const Items = () => async (_, interaction) => {
 };
 
 module.exports = {
-  Items: Items,
+  items: items,
 };

@@ -1,8 +1,8 @@
 const monsterList = require("../../data/monsterInfo.json");
-const MonsterFatch = require("../../fatch/MonsterFatch");
+const monsterFatch = require("../../fatch/MonsterFatch");
 const { suggestCorrection } = require("../../../utils/suggestCorrection");
 
-const Monster = () => async (_, interaction) => {
+const monster = () => async (_, interaction) => {
   const command = interaction.options.get("몬스터")?.value || "";
   let Embed = [];
 
@@ -19,7 +19,7 @@ const Monster = () => async (_, interaction) => {
       ],
     });
   } else {
-    const img = await MonsterFatch(currentMonster[0].link);
+    const img = await monsterFatch(currentMonster[0].link);
     Embed.push({
       color: 0x1ac89b,
       image: {
@@ -35,5 +35,5 @@ const Monster = () => async (_, interaction) => {
 };
 
 module.exports = {
-  Monster: Monster,
+  monster: monster,
 };

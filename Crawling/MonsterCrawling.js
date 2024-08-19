@@ -3,7 +3,7 @@ const axios = require("axios");
 const fs = require("fs");
 const getData = require("../app/fatch/getData");
 
-const MonsterFatch = async () => {
+const monsterFatch = async () => {
   const HTML = await getData("https://mhf.inven.co.kr/dataninfo/mhw/monster/");
   let $ = cheerio.load(HTML.data);
   let $trs = $(".list").find("table > tbody > tr");
@@ -24,4 +24,4 @@ const MonsterFatch = async () => {
   fs.writeFileSync("monsterInfo.json", stringJson);
 };
 
-MonsterFatch();
+monsterFatch();
